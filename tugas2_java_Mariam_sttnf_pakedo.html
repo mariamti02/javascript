@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Pegawai - Javascript</title>
+
+  <style>
+    h1 {
+       text-align: center;
+       font-size: x-large;
+    }
+   
+     * {
+      padding: 10px;
+      margin: 10px;
+      font-size: small;
+     }
+
+     td {
+        text-align: justify;
+     }
+  </style>
+ 
+</head>
+<body>
+  <h1>Daftar Pegawai</h1> 
+  <table align="center"  cellspacing="0" width="100%">
+    <thead>
+        <tr border="1">
+            <th bgcolor="Silver">No.</th>
+            <th bgcolor="Silver">Nama Pegawai</th>
+            <th bgcolor="Silver">Jabatan</th>
+            <th bgcolor="Silver">Agama</th>
+            <th bgcolor="Silver">Gaji</th>
+            <th bgcolor="Silver">Tunjangan Jabatan</th>
+            <th bgcolor="Silver">Tunjangan Kesehatan</th>
+            <th bgcolor="Silver">Gaji Kotor</th>
+            <th bgcolor="Silver">Zakat Mall</th>
+            <th bgcolor="Silver">Take Home Pay</th>
+            <!-- <th bgcolor="Silver">keseluruhan</th> -->
+          
+        </tr>
+    </thead>
+    <tbody>
+      <script language="javascript">
+
+            //penentuan variabel;
+            var nomor;
+            let jabatan, gaji, tjgkeluarga, tjgn, agama, warna, gajikotor;
+            
+        
+            //looping nomor dengan penentuan jabatan
+            for(nomor = 1; nomor <= 100; nomor++){
+               if(nomor >= 1 && nomor <= 25){
+                 jabatan = 'Manager';
+               }else if(nomor >= 26 && nomor <= 50){
+                 jabatan = 'Assistant Manager';
+               }else if(nomor >= 51 && nomor <= 75){
+                 jabatan = 'Supervisor';
+               }else if(nomor >= 76 && nomor <= 100){
+                 jabatan = 'Staff';
+               }
+           
+
+            //penjabaran jabatan sesuai gaji lalu dilakukan rumus yang ditentukan
+            switch(jabatan){
+               case 'Manager': 
+                  gaji = 15000000;
+                  break;
+               case 'Assistant Manager':
+                  gaji = 10000000;
+                  break;
+               case 'Supervisor':
+                  gaji =  7000000;
+                  break;
+               case 'Staff': 
+                  gaji = 4000000;
+                  break;
+               default: 
+                  gaji = 0;
+                  break; 
+            }
+
+
+            //rumus gaji kotor dan take home pay yang memiliki titik fokus pada warna sesuai agama
+            tjgn = 0.2 * gaji;
+            tjgnkesehatan = 0.1 * gaji;
+            gajikotor = gaji + tjgn + tjgnkesehatan;
+
+            agama = (nomor % 2 == 0) ? 'Muslim' : 'Non Muslim';
+            warna = (nomor % 2 == 0) ? 'Silver' : 'White';
+            zakat = (agama == 'Muslim' && gaji >= 7000000) ? gajikotor * 0.25 : 0;
+            total = gajikotor - zakat;
+
+            keseluruhan = total + gajikotor;
+
+
+            //output yang akan diterima dengan menjabarkan hasil variabel kedalam HTML Tabel
+            document.write(
+              `<tr bgcolor="${warna}">
+                  <td>${nomor}</td>
+                  <td>Pegawai ${nomor}</td>
+                  <td>${jabatan}</td>
+                  <td>${agama}</td>
+                  <td>Rp.${gaji}</td>
+                  <td>Rp.${tjgn}</td>
+                  <td>Rp.${tjgnkesehatan}</td>
+                  <td>Rp.${gajikotor}</td>
+                  <td>Rp.${zakat}</td>
+                  <td>Rp.${total}</td>
+                  
+              </tr>`
+               
+            )
+
+          }
+      </script>
+
+     
+        
+
+    </tbody
+   
+</table>
+</body>
+</html>
